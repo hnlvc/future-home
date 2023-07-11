@@ -44,8 +44,6 @@ onMounted(async () => {
     console.error('An error occurred:', error);
   }
 
-  //http://192.168.178.21:8088/getPlainValue/mihome-vacuum.0.control.clean_home
-
 })
 </script>
 
