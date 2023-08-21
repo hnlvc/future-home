@@ -1,13 +1,15 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer">
-      <!--  -->
+    <v-navigation-drawer app v-model="drawer">
+      <v-list density="compact">
+        <v-list-item v-for="item in items" :title="item.title" :to="item.to" :prepend-icon="item.icon" />
+      </v-list>
     </v-navigation-drawer>
 
     <v-app-bar>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>Future Home</v-toolbar-title>
     </v-app-bar>
 
     <v-main>
@@ -25,6 +27,14 @@ const drawer = ref(null)
 
 <script>
 export default {
-  data: () => ({ drawer: null }),
-}
+  data() {
+    return {
+      items: [
+        { title: 'Home', icon: 'mdi-home', to: '/' },
+        { title: 'Wohnzimmer', icon: 'mdi-sofa', to: '/livingroom' },
+        { title: 'Schlafzimmer', icon: 'mdi-bed', to: '/bedroom'}
+      ]
+    };
+  }
+};
 </script>

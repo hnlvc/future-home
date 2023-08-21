@@ -1,14 +1,22 @@
 <script setup lang="ts">
-const items = [
-  {
-    "title": "Wohnzimmer",
-    "devices": 4
-  },
-  {
-    "title": "Schlafzimmer",
-    "devices": 2
-  }
-];
+ async function startTvEvening() {
+   try {
+     await fetch(`http://192.168.178.21:8088/set/hmip.0.devices.3014F711A0002018A99EC715.channels.1.setPointTemperature?value=20`);
+     await fetch(`http://192.168.178.21:8088/set/denon.0.zoneMain.powerZone?value=true`);
+   } catch (e) {
+     console.log(e);
+   }
+ }
+
+ async function startGoodNight() {
+   try {
+     await fetch(`http://192.168.178.21:8088/set/hmip.0.devices.3014F711A0002018A99EC715.channels.1.setPointTemperature?value=5`);
+     await fetch(`http://192.168.178.21:8088/set/denon.0.zoneMain.powerZone?value=false`);
+     await fetch(`http://192.168.178.21:8088/set/hmip.0.devices.3014F711A00001D3C99C6C58.channels.1.on?value=true`);
+   } catch (e) {
+     console.log(e);
+   }
+ }
 </script>
 
 <template>
@@ -18,13 +26,13 @@ const items = [
       <h1>Hallo, Kai Käfer!</h1>
     </div>
     <div class="align-center">
-      <v-list lines="one">
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          :title="item.title"
-          :subtitle="item.devices+' Geräte'"
-        ></v-list-item>
+      <v-list>
+        <v-list-item>
+          <v-btn color="primary" @click="startTvEvening">Fernsehabend</v-btn>
+        </v-list-item>
+        <v-list-item>
+          <v-btn color="primary" @click="startGoodNight">Gute Nacht</v-btn>
+        </v-list-item>
       </v-list>
     </div>
   </v-responsive>

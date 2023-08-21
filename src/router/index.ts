@@ -18,6 +18,11 @@ const routes = [
         path: 'livingroom',
         name: 'LivingRoom',
         component: () => import('@/views/LivingRoom.vue'),
+      },
+      {
+        path: 'bedroom',
+        name: 'Bedroom',
+        component: () => import('@/views/Bedroom.vue'),
       }
     ],
   }
