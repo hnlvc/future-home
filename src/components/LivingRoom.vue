@@ -139,6 +139,8 @@ const formattedDesiredTemp = computed(() => `${desiredTemp.value}°C`);
 
   <v-dialog v-model="desiredTemperatureDialog">
     <v-card>
+      <h3>Temperatur einstellen</h3>
+      <br>
       <v-container class="dialog-slider-container" fill-height>
         <v-row justify="center" align="center" class="fill-height">
           <v-col cols="12">
