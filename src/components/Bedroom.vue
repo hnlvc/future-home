@@ -11,7 +11,9 @@ async function getBedLampValue() {
 }
 
 async function changeLampStatus(value: boolean) {
+  shouldShowDialog.value = false;
   await fetch(`http://192.168.178.21:8088/set/hmip.0.devices.3014F711A00001D3C99C6C58.channels.1.on?value=${value.toString()}`);
+  await getBedLampValue();
 }
 
 onMounted(() => {
@@ -29,7 +31,7 @@ onMounted(() => {
         <v-list lines="one">
           <v-list-item>
             <v-list-item-title>Bettlampe</v-list-item-title>
-            <v-list-item-subtitle>{{ bedLampValue }}</v-list-item-subtitle>
+            <v-list-item-subtitle @click="shouldShowDialog = true">{{ bedLampValue }}</v-list-item-subtitle>
           </v-list-item>
         </v-list>
       </div>
